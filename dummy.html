@@ -6,10 +6,11 @@
     <title>Image Upload</title>
 </head>
 <body>
+    <center>
     <form id="uploadForm" enctype="multipart/form-data">
         <input type="file" name="image" id="image" accept="image/*" multiple>
         <button type="submit">Upload</button>
-    </form>
+    </form></center>
 
     <script>
         document.getElementById('uploadForm').onsubmit = async (event) => {
