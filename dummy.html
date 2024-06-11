@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+</head>
+<body>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="image" id="image" accept="image/*" multiple>
+        <button type="submit">Upload</button>
+    </form>
+
+    <script>
+        document.getElementById('uploadForm').onsubmit = async (event) => {
+            event.preventDefault();
+            const formData = new FormData(document.getElementById('uploadForm'));
+            const response = await fetch('http://your-backend-endpoint/upload', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            alert(`Image uploaded successfully: ${result.url}`);
+            window.close(); // Close the popup after upload
+        };
+    </script>
+</body>
+</html>
