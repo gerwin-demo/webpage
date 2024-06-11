@@ -4,20 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #image {
+            display: block;
+            margin: 0 auto 20px;
+        }
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-</n>
-</n>
-    <h1>
-    <center>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" name="image" id="image" accept="image/*" multiple>
-        <button type="submit">Upload</button>
-    </form></center></h1>
+    <div class="container">
+        <h1>Image Upload</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" name="image" id="image" accept="image/*" multiple>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
 
     <script>
         document.getElementById('uploadForm').onsubmit = async (event) => {
             event.preventDefault();
+            const input = document.getElementById('image');
+            if (input.files.length !== 5) {
+                alert('Please select exactly 5 images.');
+                return;
+            }
             const formData = new FormData(document.getElementById('uploadForm'));
             const response = await fetch('http://your-backend-endpoint/upload', {
                 method: 'POST',
