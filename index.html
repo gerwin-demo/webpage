@@ -53,8 +53,8 @@
         document.getElementById('uploadForm').onsubmit = async (event) => {
             event.preventDefault();
             const input = document.getElementById('image');
-            if (input.files.length !== 5) {
-                alert('Please select exactly 5 images.');
+            if (input.files.length !== 1) {
+                alert('Please select exactly 1 image.');
                 return;
             }
             const formData = new FormData(document.getElementById('uploadForm'));
@@ -64,7 +64,6 @@
             });
             const result = await response.json();
             alert(`Image uploaded successfully: ${result.url}`);
-            window.close(); // Close the popup after upload
         };
     </script>
 </body>
